@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-CAD Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text-to-CAD Generator</h1>
+        
+        <form method="POST" class="input-form">
+            <div class="form-group">
+                <label for="description">Describe what you want to create:</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    rows="4" 
+                    required
+                    placeholder="Enter your description here..."></textarea>
+            </div>
+            <button type="submit">Generate CAD Instructions</button>
+        </form>
+
+        {% if cad_instructions %}
+        <div class="results">
+            <h2>CAD Model Instructions:</h2>
+            <div class="instructions">
+                {{ cad_instructions | nl2br | safe }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
